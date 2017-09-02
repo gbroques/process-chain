@@ -1,0 +1,25 @@
+G Roques
+3.8 Exercise: Process Chains
+
+1. n = 1 | i:1 process ID:4456 parent ID:3561 child ID:0
+   --------------------------------------------------------
+   n = 2 | i:1 process ID:4460 parent ID:3561 child ID:4461
+         | i:2 process ID:4461 parent ID:4460 child ID:0
+   --------------------------------------------------------
+   n = 3 | i:1 process ID:4468 parent ID:3561 child ID:4469
+         | i:2 process ID:4469 parent ID:4468 child ID:4470
+         | i:3 process ID:4470 parent ID:4469 child ID:0
+   ---------------------------------------------------------
+
+2. 4253
+    ||
+   4524
+    ||
+   4525
+    ||
+   4526
+
+3. The program can generate a seemingly infinite number of processes.
+   I tried 100,000 and it kept generating process until I grew bored and killed it.
+   This is probably because I'm on my personal Ubuntu machine, rather than the student server.
+   It seemed like roughly one-fourth of the processes were spawned by init.
