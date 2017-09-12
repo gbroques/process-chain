@@ -31,4 +31,8 @@ G Roques
    Since increasing k increases m when m is greater than zero, it has the affect of ensure child processes terminate before parent processes.
    Interestingly, if you set k to a large number like 5, and m to 0, then 5 print statements for each process is produced and roughly one fourth are again adopted by init.
 
-6. No processes are adopted by init, even with sleep set to zero, because we explicity wait for each child process to terminate. It reverses the output of the program by printing out the last iteration first, second-to-last, and so on.
+6. No processes are adopted by init, even with sleep set to zero, because we explicity wait for each child process to terminate.
+   It reverses the output of the program by printing out the last iteration first, second-to-last, and so on.
+
+7. The program seems to run like it did with the combined print statement.
+   You can still tell which processes generated each part of the output.
