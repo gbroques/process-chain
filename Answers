@@ -20,6 +20,11 @@ G Roques
    4526
 
 3. The program can generate a seemingly infinite number of processes.
-   I tried 100,000 and it kept generating process until I grew bored and killed it.
-   This is probably because I'm on my personal Ubuntu machine, rather than the student server.
+   If I do a really large number of processes like 100000, then the program hangs until I kill it,
+   or the ssh connection disconnects because of a "broken pipe".
    It seemed like roughly one-fourth of the processes were spawned by init.
+
+4. I observed the same number of processes were generated, but the print statements were delayed. 
+
+5. The number of processes generated each loop iteration will still be the bottle-neck in terms of how many processes you can generate.
+   However the program seems to generate a lot more processes when the number of processes are small, iterations are large, and sleep is small.
