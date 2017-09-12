@@ -19,12 +19,16 @@ G Roques
     ||
    4526
 
-3. The program can generate a seemingly infinite number of processes.
-   If I do a really large number of processes like 100000, then the program hangs until I kill it,
-   or the ssh connection disconnects because of a "broken pipe".
-   It seemed like roughly one-fourth of the processes were spawned by init.
+3. The program can generate a large number of processes.
+   However parent processes terminate before child processes fairly frequently, roughly every 3 to 4 processes.
+	 The orphaned child process is then adopted by init, causing roughly one fourth of the processes to have a parent id of 1.
 
-4. I observed the same number of processes were generated, but the print statements were delayed. 
+4. I observed the same behavior, but the print statements were delayed for 10 seconds.
 
-5. The number of processes generated each loop iteration will still be the bottle-neck in terms of how many processes you can generate.
-   However the program seems to generate a lot more processes when the number of processes are small, iterations are large, and sleep is small.
+5. Sleeping for 1 second or greater allows all the child processes to terminate before the parent processes.
+   I observed none of the processes had a parent id of 1 with sleep greater than or equal to 1.
+   Increasing k has the effect of producing k print statements for n processes and sleeping for k * m seconds.
+   Since increasing k increases m when m is greater than zero, it has the affect of ensure child processes terminate before parent processes.
+   Interestingly, if you set k to a large number like 5, and m to 0, then 5 print statements for each process is produced and roughly one fourth are again adopted by init.
+
+6. No processes are adopted by init, even with sleep set to zero, because we explicity wait for each child process to terminate. It reverses the output of the program by printing out the last iteration first, second-to-last, and so on.
