@@ -34,5 +34,8 @@ G Roques
 6. No processes are adopted by init, even with sleep set to zero, because we explicity wait for each child process to terminate.
    It reverses the output of the program by printing out the last iteration first, second-to-last, and so on.
 
-7. The program seems to run like it did with the combined print statement.
-   You can still tell which processes generated each part of the output.
+7. The program runs like it did with the combined print statement for the most part.
+   However, sometimes it would jumble and alternate the print statements of two processes.
+   You could still read the output and determine which print statement belonged to which process, but it was a lot harder to read.
+
+8.  If for example, you enter 5 for n and 3 for nchars then it reads in 3 characters from stdin for the first process and displays the process id and string. Then the next four processes each read in one character from stdin. It seems like each process is racing on stdin.
