@@ -3,11 +3,30 @@
 #include <unistd.h>
 
 int main(int argc, char * argv[]) {
+
+	int c, hflag;
+	opterr = 0;
+	while ((c = getopt(argc, argv, "h")) != -1) {
+		switch(c) {
+			case 'h':
+				hflag = 1;
+				break;
+			default:
+				abort();
+		}
+	}	
+
+
+	if (hflag) {
+		fprintf(stderr, "Usage: %s processes nchars\n", argv[0]);
+		exit(0);
+	}
+
+
   pid_t childpid = 0;
   int i, j, n, nchars;
   if (argc != 3) {
-    /* check for valid number of command-line arguments */
-    fprintf(stderr, "Usage: %s processes nchars\n", argv[0]);
+		fprintf(stderr, "Usage: %s processes nchars\n", argv[0]);
     return 1;
   }
   n = atoi(argv[1]);
